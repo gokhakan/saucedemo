@@ -34,4 +34,9 @@ public class ProductsPage extends LoginPage {
     @FindBy (css = ".inventory_item_price")
     public WebElement prices;
 
+    @FindBy (xpath = "(//div[@class='inventory_item_name']) [1]")
+    public WebElement itemName1;
+
+    @FindBy (xpath = "(//div[@class='inventory_item_name']) [2]")
+    public WebElement itemName2;
 }

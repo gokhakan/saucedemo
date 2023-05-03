@@ -23,6 +23,8 @@ public class Steps {
     OverviewPage overviewPage = new OverviewPage();
 
     Logger logger = Logger.getLogger(Steps.class.getName());
+    List<WebElement>itemNames;
+    List<WebElement> prices;
 
     @Given("user is on login page")
     public void user_is_on_login_page() {
@@ -152,7 +154,7 @@ public class Steps {
 
     @Given("user gets all prices")
     public void user_gets_all_prices() {
-        List<WebElement> prices = Driver.driver.findElements(By.className("inventory_item_price"));
+        prices = Driver.driver.findElements(By.className("inventory_item_price"));
         System.out.println("prices.size() = " + prices.size());
         System.out.println("prices.get(5).getText() = " + prices.get(5).getText());
         for (int i = 0; i < prices.size(); i++) {
@@ -162,11 +164,29 @@ public class Steps {
     }
     @Given("user gets all item names")
     public void user_gets_all_item_names() {
-        List<WebElement>itemNames = Driver.driver.findElements(By.className("inventory_item_name"));
+        itemNames = Driver.driver.findElements(By.className("inventory_item_name"));
         for (int i = 0; i < itemNames.size(); i++) {
             System.out.println("ItemNames for "+i+ " = " + itemNames.get(i).getText());
 
         }
+    }
+    @Given("user gets name for a particular item")
+    public void user_gets_name_for_a_particular_item() {
+        System.out.println("productsPage.itemName1.getText() = " + productsPage.itemName1.getText());
+        int j =2;
+        String testItem = "itemName" +j;
+        System.out.println("testItem = " + testItem);
+        switch (testItem){
+            case "itemName1":
+                System.out.println("productsPage.itemName1.getText() = " + productsPage.itemName1.getText());
+                break;
+            case "itemName2":
+                System.out.println("productsPage.itemName2 = " + productsPage.itemName2.getText());
+                break;
+            default:
+                logger.warning("No matching item");
+        }
+
     }
 
 

@@ -4,3 +4,4 @@ Feature: WebElements
     Given user is logged in  on "Products" page
     And user gets all prices
     And user gets all item names
+    And user gets name for a particular item
