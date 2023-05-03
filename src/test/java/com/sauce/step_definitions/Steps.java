@@ -6,7 +6,10 @@ import com.sauce.utilities.Driver;
 import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
+import org.openqa.selenium.By;
+import org.openqa.selenium.WebElement;
 
+import java.util.List;
 import java.util.logging.Logger;
 
 import static org.junit.Assert.assertEquals;
@@ -65,7 +68,7 @@ public class Steps {
                 String actualCompleteURL = Driver.get().getCurrentUrl();
                 assertEquals(expectedCompleteURL, actualCompleteURL);
             default:
-                System.out.println("URL error");
+                logger.info("URL error");
         }
     }
 
@@ -112,7 +115,7 @@ public class Steps {
                 overviewPage.finish.click();
                 break;
             default:
-                System.out.println("No item in cart");
+                logger.info("No item in cart");
         }
     }
 
@@ -137,7 +140,7 @@ public class Steps {
                 yourInformationPage.postcode.sendKeys(ConfigurationReader.get("purchaserPostcode"));
                 break;
             default:
-                System.out.println("Missing data");
+                logger.info("Missing data");
         }
 
     }
@@ -145,7 +148,26 @@ public class Steps {
     @Then("user clicks continue")
     public void user_clicks_continue() {
         yourInformationPage.continueButton.click();
-
     }
+
+    @Given("user gets all prices")
+    public void user_gets_all_prices() {
+        List<WebElement> prices = Driver.driver.findElements(By.className("inventory_item_price"));
+        System.out.println("prices.size() = " + prices.size());
+        System.out.println("prices.get(5).getText() = " + prices.get(5).getText());
+        for (int i = 0; i < prices.size(); i++) {
+            System.out.println("Prices for item [ " + i + "] is = " + prices.get(i).getText());
+
+        }
+    }
+    @Given("user gets all item names")
+    public void user_gets_all_item_names() {
+        List<WebElement>itemNames = Driver.driver.findElements(By.className("inventory_item_name"));
+        for (int i = 0; i < itemNames.size(); i++) {
+            System.out.println("ItemNames for "+i+ " = " + itemNames.get(i).getText());
+
+        }
+    }
+
 
 }
