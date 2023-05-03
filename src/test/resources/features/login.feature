@@ -1,5 +1,6 @@
 @regression @login
 Feature: Login page
+  @wip
 
   Scenario: Successfully login
     Given user is on login page

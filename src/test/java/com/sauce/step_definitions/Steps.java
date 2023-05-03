@@ -7,6 +7,8 @@ import io.cucumber.java.en.Given;
 import io.cucumber.java.en.Then;
 import io.cucumber.java.en.When;
 
+import java.util.logging.Logger;
+
 import static org.junit.Assert.assertEquals;
 import static org.junit.Assert.assertTrue;
 
@@ -17,10 +19,15 @@ public class Steps {
     YourInformationPage yourInformationPage = new YourInformationPage();
     OverviewPage overviewPage = new OverviewPage();
 
+    Logger logger = Logger.getLogger(Steps.class.getName());
+
     @Given("user is on login page")
     public void user_is_on_login_page() {
         Driver.get().get(ConfigurationReader.get("url"));
+        logger.info("INFO: User is logging in");
+
     }
+
 
     @When("user enters valid username and valid password")
     public void user_enters_valid_username_and_valid_password() {
@@ -33,7 +40,9 @@ public class Steps {
 
     @Then("user is on {string} page")
     public void user_is_on_page(String actualPage) {
-        System.out.println("actualPage = " + actualPage);
+
+        logger.info("User is on page: " + actualPage);
+
 
         switch (actualPage) {
             case "Products":

@@ -1,6 +1,5 @@
 @regression @login
 Feature: Item purchase
-  @wip
   Scenario: Successful item purchase
     Given user is logged in  on "Products" page
     When user adds "backpack" to the cart
